@@ -1,0 +1,10 @@
+C:\Users\oibiang\source\repos\DatabaseElev8\bin\Debug\DatabaseElev8.exe.config
+C:\Users\oibiang\source\repos\DatabaseElev8\bin\Debug\DatabaseElev8.exe
+C:\Users\oibiang\source\repos\DatabaseElev8\bin\Debug\DatabaseElev8.pdb
+C:\Users\oibiang\source\repos\DatabaseElev8\obj\Debug\DatabaseElev8.csprojAssemblyReference.cache
+C:\Users\oibiang\source\repos\DatabaseElev8\obj\Debug\DatabaseElev8.Form1.resources
+C:\Users\oibiang\source\repos\DatabaseElev8\obj\Debug\DatabaseElev8.Properties.Resources.resources
+C:\Users\oibiang\source\repos\DatabaseElev8\obj\Debug\DatabaseElev8.csproj.GenerateResource.cache
+C:\Users\oibiang\source\repos\DatabaseElev8\obj\Debug\DatabaseElev8.csproj.CoreCompileInputs.cache
+C:\Users\oibiang\source\repos\DatabaseElev8\obj\Debug\DatabaseElev8.exe
+C:\Users\oibiang\source\repos\DatabaseElev8\obj\Debug\DatabaseElev8.pdb
