@@ -44,6 +44,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dgView = new System.Windows.Forms.DataGridView();
+            this.dtpDOB = new System.Windows.Forms.DateTimePicker();
+            this.lblId = new System.Windows.Forms.Label();
+            this.bttnRead1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,28 +102,28 @@
             // 
             // txtSurname
             // 
-            this.txtSurname.Location = new System.Drawing.Point(433, 43);
+            this.txtSurname.Location = new System.Drawing.Point(433, 60);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(218, 20);
             this.txtSurname.TabIndex = 6;
             // 
             // txtOtherNames
             // 
-            this.txtOtherNames.Location = new System.Drawing.Point(433, 79);
+            this.txtOtherNames.Location = new System.Drawing.Point(433, 96);
             this.txtOtherNames.Name = "txtOtherNames";
             this.txtOtherNames.Size = new System.Drawing.Size(218, 20);
             this.txtOtherNames.TabIndex = 7;
             // 
             // txtMobileNo
             // 
-            this.txtMobileNo.Location = new System.Drawing.Point(433, 147);
+            this.txtMobileNo.Location = new System.Drawing.Point(433, 164);
             this.txtMobileNo.Name = "txtMobileNo";
             this.txtMobileNo.Size = new System.Drawing.Size(218, 20);
             this.txtMobileNo.TabIndex = 8;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(433, 186);
+            this.txtAddress.Location = new System.Drawing.Point(433, 203);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(218, 20);
             this.txtAddress.TabIndex = 9;
@@ -131,14 +134,14 @@
             this.cmbGender.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cmbGender.Location = new System.Drawing.Point(433, 105);
+            this.cmbGender.Location = new System.Drawing.Point(433, 122);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(218, 21);
             this.cmbGender.TabIndex = 10;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(147, 46);
+            this.label2.Location = new System.Drawing.Point(147, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(280, 23);
             this.label2.TabIndex = 11;
@@ -146,7 +149,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(147, 82);
+            this.label3.Location = new System.Drawing.Point(147, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(280, 23);
             this.label3.TabIndex = 12;
@@ -154,7 +157,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(147, 108);
+            this.label4.Location = new System.Drawing.Point(147, 125);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(280, 23);
             this.label4.TabIndex = 13;
@@ -162,7 +165,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(147, 147);
+            this.label5.Location = new System.Drawing.Point(147, 164);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(280, 23);
             this.label5.TabIndex = 14;
@@ -170,7 +173,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(147, 183);
+            this.label6.Location = new System.Drawing.Point(147, 200);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(280, 23);
             this.label6.TabIndex = 15;
@@ -179,17 +182,47 @@
             // dgView
             // 
             this.dgView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgView.Location = new System.Drawing.Point(54, 240);
+            this.dgView.Location = new System.Drawing.Point(54, 258);
             this.dgView.Name = "dgView";
             this.dgView.RowHeadersWidth = 45;
-            this.dgView.Size = new System.Drawing.Size(860, 210);
+            this.dgView.Size = new System.Drawing.Size(884, 465);
             this.dgView.TabIndex = 16;
+            this.dgView.SelectionChanged += new System.EventHandler(this.dgView_SelectionChanged);
+            // 
+            // dtpDOB
+            // 
+            this.dtpDOB.Location = new System.Drawing.Point(433, 231);
+            this.dtpDOB.Name = "dtpDOB";
+            this.dtpDOB.Size = new System.Drawing.Size(200, 20);
+            this.dtpDOB.TabIndex = 17;
+            // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(158, 43);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(0, 15);
+            this.lblId.TabIndex = 18;
+            this.lblId.Visible = false;
+            // 
+            // bttnRead1
+            // 
+            this.bttnRead1.Location = new System.Drawing.Point(944, 319);
+            this.bttnRead1.Name = "bttnRead1";
+            this.bttnRead1.Size = new System.Drawing.Size(164, 56);
+            this.bttnRead1.TabIndex = 19;
+            this.bttnRead1.Text = "Read Statement 1";
+            this.bttnRead1.UseVisualStyleBackColor = true;
+            this.bttnRead1.Click += new System.EventHandler(this.bttnRead1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 783);
+            this.Controls.Add(this.bttnRead1);
+            this.Controls.Add(this.lblId);
+            this.Controls.Add(this.dtpDOB);
             this.Controls.Add(this.dgView);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -232,6 +265,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgView;
+        private System.Windows.Forms.DateTimePicker dtpDOB;
+        private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.Button bttnRead1;
     }
 }
 

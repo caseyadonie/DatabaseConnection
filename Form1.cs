@@ -14,7 +14,7 @@ namespace DatabaseElev8
 {
     public partial class Form1 : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["Elev8Connection"].ConnectionString;
+        DataClass dataClass = new DataClass();
         public Form1()
         {
             InitializeComponent();
@@ -22,45 +22,10 @@ namespace DatabaseElev8
 
         private void bttnInsert_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    //Insert into [TableName](Properties) Values(content)
-                    String query = "INSERT INTO EmployeesDetailsTbl(Surname,OtherNames,Gender, MobileNo,Address) Values(@Surname,@OtherNames,@Gender, @MobileNo,@Address)";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@Surname", txtSurname.Text);
-                        command.Parameters.AddWithValue("@OtherNames", txtOtherNames.Text);
-                        command.Parameters.AddWithValue("@Gender", cmbGender.Text);
-                        command.Parameters.AddWithValue("@MobileNo", txtMobileNo.Text);
-                        command.Parameters.AddWithValue("@Address", txtAddress.Text);
-
-                        connection.Open();
-                        int result = command.ExecuteNonQuery();
-
-                        // Check Error
-                        if (result < 0)
-                        {
-                            Console.WriteLine("Error inserting data into Database!");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Record Added Successfully.");
-                            clear();
-                        }
-
-
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-               
-            }
+            dataClass.CreateEmployeeRecord(txtSurname.Text, txtOtherNames.Text, cmbGender.Text, txtMobileNo.Text, txtAddress.Text);
+            clear();
+            bttnRead.PerformClick();
         }
         void clear()
         {
@@ -69,70 +34,35 @@ namespace DatabaseElev8
             txtOtherNames.Text = String.Empty;
             txtSurname.Text = String.Empty;
             cmbGender.Text = String.Empty;
+            dtpDOB.Value = DateTime.Today;
         }
         private void bttnRead_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                String sql = "SELECT * FROM EmployeesDetailsTbl";
-
-                SqlCommand sqlcom = new SqlCommand(sql, connection);
-                try
-                {
-                    sqlcom.Connection.Open();
-                    sqlcom.ExecuteNonQuery();
-                    SqlDataReader reader = sqlcom.ExecuteReader();
-                    DataTable datatable = new DataTable();
-                    datatable.Load(reader);
-                    dgView.DataSource = datatable;
-                    //MessageBox.Show("LEFT OUTER成功");
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-                
+           //DataTable dt= dataClass.ReturnEmployeesRecord();
+            dgView.DataSource= dataClass.ReturnEmployeesRecord();
         }
 
         private void bttnUpdate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    //Update [TableName] set Property=@Value where PK=?
-                    String query = "Update EmployeesDetailsTbl set Surname=@Surname, OtherNames=@OtherNames where Id=1";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@Surname", txtSurname.Text);
-                        command.Parameters.AddWithValue("@OtherNames", txtOtherNames.Text);
+            dataClass.UpdateEmployeeRecord(Convert.ToInt32(lblId.Text), txtSurname.Text, txtOtherNames.Text, cmbGender.Text, txtMobileNo.Text, txtAddress.Text);
+            bttnRead.PerformClick();
+        }
 
-                        connection.Open();
-                        int result = command.ExecuteNonQuery();
+        private void dgView_SelectionChanged(object sender, EventArgs e)
+        {
+            int row = dgView.CurrentCell.RowIndex;
+            lblId.Text= dgView.Rows[row].Cells[0].Value.ToString();
+            txtSurname.Text = dgView.Rows[row].Cells[1].Value.ToString();
+            txtOtherNames.Text = dgView.Rows[row].Cells[2].Value.ToString();
+            cmbGender.Text= dgView.Rows[row].Cells[3].Value.ToString();
+            txtMobileNo.Text = dgView.Rows[row].Cells[4].Value.ToString();
+            txtAddress.Text = dgView.Rows[row].Cells[6].Value.ToString();
+        }
 
-                        // Check Error
-                        if (result < 0)
-                        {
-                            Console.WriteLine("Error Updating data in Database!");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Record Updated Successfully.");
-                            clear();
-                        }
-
-
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
+        private void bttnRead1_Click(object sender, EventArgs e)
+        {
+            dgView.DataSource = dataClass.ReturnEmployeesRecord(txtSurname.Text);
         }
     }
 }
